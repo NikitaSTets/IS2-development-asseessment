@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "8cdf0dc4-c66b-4332-a658-8831330edaf5",
+		"name": "Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "16420854"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7246/policies"
+			},
+			"response": []
+		},
+		{
+			"name": "Get ById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7246/policies/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Export",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7246/policies/export?startDate=2024-03-01&endDate=2024-05-31",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7246",
+					"path": [
+						"policies",
+						"export"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-03-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-05-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new policy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"policyNumber\": \"dsadasdas\",\r\n    \"premium\": 10,\r\n    \"startDate\": \"2024-04-01T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7246/policies"
+			},
+			"response": []
+		}
+	]
+}
