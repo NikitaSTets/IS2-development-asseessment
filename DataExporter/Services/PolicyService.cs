@@ -34,9 +34,6 @@ public class PolicyService : IPolicyService
         _policyRepository.Add(policy);
         await _policyRepository.SaveChangesAsync();
 
-        //_dbContext.Policies.Add(policy);
-        //await _dbContext.SaveChangesAsync();
-
         return new ReadPolicyDto
         {
             Id = policy.Id,
@@ -52,7 +49,7 @@ public class PolicyService : IPolicyService
     /// <returns>Returns a list of ReadPolicyDto.</returns>
     public async Task<IList<ReadPolicyDto>> ReadPoliciesAsync()
     {
-        var policies = await _policyRepository.GetAllAsync().ToListAsync();
+        var policies = await _policyRepository.GetAll().ToListAsync();
 
         var policyModels = policies
             .Select(p => new ReadPolicyDto

@@ -21,7 +21,7 @@ public class PolicyRepository : IPolicyRepository
         _dbContext.Policies.Add(policy);
     }
 
-    public IQueryable<Policy> GetAllAsync()
+    public IQueryable<Policy> GetAll()
     {
         return _dbContext.Policies.AsQueryable();
     }
@@ -35,7 +35,7 @@ public class PolicyRepository : IPolicyRepository
 
     public async Task<IEnumerable<Policy>> GetWhereAsync(Expression<Func<Policy, bool>> condition)
     {
-        var policis = await GetAllAsync().Include(p => p.Notes).Where(condition).ToListAsync();
+        var policis = await GetAll().Include(p => p.Notes).Where(condition).ToListAsync();
 
         return policis;
     }

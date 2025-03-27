@@ -7,7 +7,7 @@ public interface IPolicyRepository
 {
     void Add(Policy policy);
 
-    IQueryable<Policy> GetAllAsync();
+    IQueryable<Policy> GetAll();
 
     Task<Policy?> GetByIdAsync(int id);
 

@@ -22,6 +22,11 @@ public class PoliciesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreatePolicies([FromBody] CreatePolicyDto createPolicyDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return _managedResultFactory.CreateActionResultFromInvalidModelState(ModelState); 
+        }
+
         var policies = await _policyService.CreatePolicyAsync(createPolicyDto);
 
         return _managedResultFactory.CreateManagedOkResult(createPolicyDto);
@@ -40,6 +45,14 @@ public class PoliciesController : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetPolicy(int id)
     {
+        if (id <= 0)
+        {
+            var modelState = new ModelStateDictionary();
+            modelState.AddModelError("InvalidDate", "Invalid id");
+
+            return _managedResultFactory.CreateActionResultFromInvalidModelState(modelState);
+        }
+
         var policy = await _policyService.ReadPolicyAsync(id);
 
         return _managedResultFactory.CreateManagedOkResult(policy);
